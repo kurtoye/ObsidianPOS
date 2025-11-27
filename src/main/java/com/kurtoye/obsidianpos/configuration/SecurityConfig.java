@@ -39,6 +39,7 @@ public class SecurityConfig {
 
     private CorsConfigurationSource corsConfigurationSource() {
         return new CorsConfigurationSource() {
+
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration corsConfiguration = new CorsConfiguration();
