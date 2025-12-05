@@ -1,9 +1,7 @@
 package com.kurtoye.obsidianpos.models;
 
 import com.kurtoye.obsidianpos.domain.UserRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
@@ -18,7 +16,8 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ID;
 
     @Column(nullable = false)
     private String fullName;
