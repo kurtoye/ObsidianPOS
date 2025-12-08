@@ -19,6 +19,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
+    @ManyToOne
+    private Store store;
+
     @Column(nullable = false)
     private String fullName;
 

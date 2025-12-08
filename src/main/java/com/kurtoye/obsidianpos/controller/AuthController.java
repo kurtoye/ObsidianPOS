@@ -18,21 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    // http://localhost:4200/auth/register
+    // http://localhost:5000/auth/register
 
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> registerHandler(
             @RequestBody UserDTO userDTO
-    ) {
-        try {
-            return new ResponseEntity<>(
-                    authService.register(userDTO),
-                    HttpStatus.CREATED
-            );
-        } catch (UserException e) {
-            throw new RuntimeException(e);
-        }
+    ) throws UserException {
+        return new ResponseEntity<>(
+          authService.register(userDTO),
+          HttpStatus.CREATED
+        );
     }
 
     @PostMapping("/login")
