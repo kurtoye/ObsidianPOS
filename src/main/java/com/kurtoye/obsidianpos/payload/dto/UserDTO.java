@@ -2,7 +2,6 @@ package com.kurtoye.obsidianpos.payload.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.kurtoye.obsidianpos.domain.UserRole;
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -24,7 +23,7 @@ import java.time.LocalDateTime;
 public class UserDTO {
 
 
-    private Long ID;
+    private Long id;
     private String password;
     private UserRole role;
 

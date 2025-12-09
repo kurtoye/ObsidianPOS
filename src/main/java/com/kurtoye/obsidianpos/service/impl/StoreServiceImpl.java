@@ -27,21 +27,21 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreDTO createStore(StoreDTO storeDTO, User user) {
         Store store = StoreMapper.toEntity(storeDTO, user);
-        return StoreMapper.toStoreDTO(storeRepository.save(store));
+        return StoreMapper.toDTO(storeRepository.save(store));
     }
 
     @Override
-    public StoreDTO getStoreByID(Long storeID) throws Exception {
-        Store store = storeRepository.findById(storeID).orElseThrow(
+    public StoreDTO getStoreByID(Long storeId) throws Exception {
+        Store store = storeRepository.findById(storeId).orElseThrow(
                 () -> new Exception("Store not found")
         );
-        return StoreMapper.toStoreDTO(store);
+        return StoreMapper.toDTO(store);
     }
 
     @Override
     public List<StoreDTO> getAllStores() {
         List<Store> stores = storeRepository.findAll();
-        return stores.stream().map(StoreMapper::toStoreDTO).collect(Collectors.toList());
+        return stores.stream().map(StoreMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public StoreDTO updateStore(Long storeID, StoreDTO storeDTO) throws Exception {
+    public StoreDTO updateStore(Long storeId, StoreDTO storeDTO) throws Exception {
         User currentUser = userService.getCurrentUser();
 
         Store existingStore = storeRepository.findByStoreAdminID(currentUser.getID());
@@ -77,11 +77,11 @@ public class StoreServiceImpl implements StoreService {
 
         Store updatedStore = storeRepository.save(existingStore);
 
-        return StoreMapper.toStoreDTO(updatedStore);
+        return StoreMapper.toDTO(updatedStore);
     }
 
     @Override
-    public void deleteStore(Long storeID) throws UserException {
+    public void deleteStore(Long storeId) throws UserException {
         Store store = getStoreByAdmin();
         storeRepository.delete(store);
     }
@@ -92,17 +92,17 @@ public class StoreServiceImpl implements StoreService {
         if (currentUser == null) {
             throw new UserException("User doesn't have permission to access this store");
         }
-        return StoreMapper.toStoreDTO(currentUser.getStore());
+        return StoreMapper.toDTO(currentUser.getStore());
     }
 
     @Override
-    public StoreDTO moderateStore(Long storeID, StoreStatus status) throws Exception {
-        Store store = storeRepository.findById(storeID).orElseThrow(
+    public StoreDTO moderateStore(Long storeId, StoreStatus status) throws Exception {
+        Store store = storeRepository.findById(storeId).orElseThrow(
                 () -> new Exception("Store not found")
         );
 
         store.setStatus(status);
         Store updatedStore = storeRepository.save(store);
-        return StoreMapper.toStoreDTO(updatedStore);
+        return StoreMapper.toDTO(updatedStore);
     }
 }

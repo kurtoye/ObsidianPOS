@@ -2,7 +2,6 @@ package com.kurtoye.obsidianpos.controller;
 
 import com.kurtoye.obsidianpos.domain.StoreStatus;
 import com.kurtoye.obsidianpos.mapper.StoreMapper;
-import com.kurtoye.obsidianpos.models.Store;
 import com.kurtoye.obsidianpos.models.User;
 import com.kurtoye.obsidianpos.payload.dto.StoreDTO;
 import com.kurtoye.obsidianpos.payload.response.ApiResponse;
@@ -40,7 +39,7 @@ public class StoreController {
     @GetMapping("/admin")
     public ResponseEntity<StoreDTO> getStoreByAdmin(@RequestHeader("Authorization")String jwt) throws Exception {
 
-        return ResponseEntity.ok(StoreMapper.toStoreDTO(storeService.getStoreByAdmin()));
+        return ResponseEntity.ok(StoreMapper.toDTO(storeService.getStoreByAdmin()));
     }
 
     @GetMapping("/employee")

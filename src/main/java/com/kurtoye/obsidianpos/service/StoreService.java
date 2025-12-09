@@ -13,12 +13,12 @@ import java.util.List;
 public interface StoreService {
 
     StoreDTO createStore(StoreDTO storeDTO, User user);
-    StoreDTO getStoreByID(Long storeID) throws Exception;
+    StoreDTO getStoreByID(Long storeId) throws Exception;
     List<StoreDTO> getAllStores();
     Store getStoreByAdmin() throws UserException;
-    StoreDTO updateStore(Long storeID, StoreDTO storeDTO) throws Exception;
-    void deleteStore(Long storeID) throws UserException;
+    StoreDTO updateStore(Long storeId, StoreDTO storeDTO) throws Exception;
+    void deleteStore(Long storeId) throws UserException;
     StoreDTO getStoreByEmployee() throws UserException;
 
-    StoreDTO moderateStore(Long storeID, StoreStatus status) throws Exception;
+    StoreDTO moderateStore(Long storeId, StoreStatus status) throws Exception;
 }

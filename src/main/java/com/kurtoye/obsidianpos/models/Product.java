@@ -1,0 +1,52 @@
+package com.kurtoye.obsidianpos.models;
+
+import com.kurtoye.obsidianpos.domain.StoreStatus;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String sku;
+
+    private String description;
+    private Double mrp;
+    private Double sellingPrice;
+    private String brand;
+    private String imageUrl;
+
+    @ManyToOne
+    private Category category;
+
+    @ManyToOne
+    private Store store;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreated() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdated() {
+        updatedAt = LocalDateTime.now();
+    }
+}
+

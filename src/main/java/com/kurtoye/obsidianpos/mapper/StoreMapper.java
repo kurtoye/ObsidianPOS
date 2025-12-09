@@ -6,7 +6,7 @@ import com.kurtoye.obsidianpos.payload.dto.StoreDTO;
 
 public class StoreMapper {
 
-    public static StoreDTO toStoreDTO(Store store) {
+    public static StoreDTO toDTO(Store store) {
         StoreDTO storeDTO = new StoreDTO();
         storeDTO.setId(store.getId());
         storeDTO.setBrand(store.getBrand());
