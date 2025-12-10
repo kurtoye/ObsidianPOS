@@ -1,43 +1,43 @@
 package com.kurtoye.obsidianpos.models;
 
-import com.kurtoye.obsidianpos.domain.StoreStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class Product {
+@NoArgsConstructor
+public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
+    private String address;
+    private String phone;
+    private String email;
 
-    @Column(nullable = false, unique = true)
-    private String sku;
+    @ElementCollection
+    private List<String> workingDays;
 
-    private String description;
-    private Double mrp;
-    private Double sellingPrice;
-    private String brand;
-    private String imageUrl;
+    private LocalTime openTime;
+    private LocalTime closeTime;
 
-    @ManyToOne
-    private Category category;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     private Store store;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private User manager;
 
     @PrePersist
     protected void onCreate() {
@@ -49,4 +49,3 @@ public class Product {
         updatedAt = LocalDateTime.now();
     }
 }
-

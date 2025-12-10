@@ -31,7 +31,7 @@ public class StoreController {
 
 
     @GetMapping()
-    public ResponseEntity<List<StoreDTO>> getAllStore(@RequestHeader("Authorization")String jwt) throws Exception {
+    public ResponseEntity<List<StoreDTO>> getAllStores(@RequestHeader("Authorization")String jwt) throws Exception {
 
         return ResponseEntity.ok(storeService.getAllStores());
     }

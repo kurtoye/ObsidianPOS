@@ -24,10 +24,10 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserByID(
+    public ResponseEntity<UserDTO> getUserById(
             @RequestHeader("Authorization") String jwt,
             @PathVariable Long id) throws UserException, Exception {
-        User user = userService.getUserByID(id);
+        User user = userService.getUserById(id);
         return ResponseEntity.ok(UserMapper.toDTO(user));
     }
 }

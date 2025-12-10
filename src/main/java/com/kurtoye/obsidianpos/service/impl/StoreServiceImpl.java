@@ -47,14 +47,14 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store getStoreByAdmin() throws UserException {
         User admin = userService.getCurrentUser();
-        return storeRepository.findByStoreAdminID(admin.getID());
+        return storeRepository.findByStoreAdminId(admin.getId());
     }
 
     @Override
     public StoreDTO updateStore(Long storeId, StoreDTO storeDTO) throws Exception {
         User currentUser = userService.getCurrentUser();
 
-        Store existingStore = storeRepository.findByStoreAdminID(currentUser.getID());
+        Store existingStore = storeRepository.findByStoreAdminId(currentUser.getId());
         if  (existingStore == null) {
             throw new Exception("Store not found");
         }
