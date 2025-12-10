@@ -3,20 +3,49 @@ package com.kurtoye.obsidianpos.configuration;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
+
+
+
 @Service
 public class JwtProvider {
 
-    static SecretKey secretKey = Keys.hmacShaKeyFor(JwtConstant.JWT_SECRET.getBytes());
+    private final JwtConstant jwtConstant;
+    private SecretKey secretKey;
+
+    public JwtProvider(JwtConstant jwtConstant) {
+        this.jwtConstant = jwtConstant;
+    }
+
+    @PostConstruct
+    public void init() {
+        this.secretKey = Keys.hmacShaKeyFor(
+                jwtConstant.getJwtSecret().getBytes()
+        );
+    }
+
+    public SecretKey getSigningKey() {
+        return secretKey;
+    }
 
     public String generateToken(Authentication authentication) {
 
@@ -51,5 +80,6 @@ public class JwtProvider {
         }
         return String.join(",", auths);
     }
+
 
 }

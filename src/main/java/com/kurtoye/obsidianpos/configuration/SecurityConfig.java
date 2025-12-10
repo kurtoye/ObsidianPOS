@@ -19,6 +19,12 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
+    private final JwtValidator jwtValidator;
+
+    public SecurityConfig(JwtValidator jwtValidator) {
+        this.jwtValidator = jwtValidator;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain
             (HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
@@ -31,7 +37,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/super-admin/**")
                                 .hasRole("ADMIN")
                                 .anyRequest().permitAll()
-                ).addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
+                ).addFilterBefore(jwtValidator, BasicAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                     .cors(
                             cors -> cors.configurationSource(corsConfigurationSource)

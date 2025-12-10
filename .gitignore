@@ -31,3 +31,19 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### SECRETS & ENV FILES ##
+.env
+.env.*
+application-secrets.properties
+application-prod.properties
+secrets.txt
+
+### CRYPTO / KEYS ###
+*.key
+*.pem
+*.p12
+*.jks
+
+### LOCAL OVERRIDES ###
+application-local.properties
