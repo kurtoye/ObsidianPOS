@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
-    private final CustomUserImplementation customUserImplementation;
+    private final CustomUserImpl customUserImpl;
 
 
     @Override
@@ -96,7 +96,7 @@ public class AuthServiceImpl implements AuthService {
 
     private Authentication authenticate(String email, String password) throws UserException {
 
-        UserDetails userDetails = customUserImplementation.loadUserByUsername(email);
+        UserDetails userDetails = customUserImpl.loadUserByUsername(email);
 
         if (userDetails == null) {
             throw new UserException("Email doesn't exist");
