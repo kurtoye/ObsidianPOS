@@ -31,9 +31,13 @@ public class UserDTO {
     private String email;
     private String phone;
 
+    private Long branchId;
+    private Long storeId;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime lastLoginAt;
+
+
 
 }
