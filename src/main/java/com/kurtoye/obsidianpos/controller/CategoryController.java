@@ -22,12 +22,6 @@ public class CategoryController {
         );
     }
 
-    @GetMapping("/store/{storeId}")
-    public ResponseEntity<List<CategoryDTO>> getCategory(@PathVariable Long storeId) throws Exception {
-        return ResponseEntity.ok(
-                categoryService.getCategoriesByStore(storeId)
-        );
-    }
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryDTO categoryDTO,
                                                       @PathVariable Long id) throws Exception {
@@ -35,6 +29,14 @@ public class CategoryController {
                 categoryService.updateCategory(id, categoryDTO)
         );
     }
+
+    @GetMapping("/store/{storeId}")
+    public ResponseEntity<List<CategoryDTO>> getCategory(@PathVariable Long storeId) throws Exception {
+        return ResponseEntity.ok(
+                categoryService.getCategoriesByStore(storeId)
+        );
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteCategory(@RequestBody CategoryDTO categoryDTO,

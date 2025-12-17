@@ -29,25 +29,6 @@ public class StoreController {
         return ResponseEntity.ok(storeService.createStore(storeDTO, user));
     }
 
-
-    @GetMapping()
-    public ResponseEntity<List<StoreDTO>> getAllStores(@RequestHeader("Authorization")String jwt) throws Exception {
-
-        return ResponseEntity.ok(storeService.getAllStores());
-    }
-
-    @GetMapping("/admin")
-    public ResponseEntity<StoreDTO> getStoreByAdmin(@RequestHeader("Authorization")String jwt) throws Exception {
-
-        return ResponseEntity.ok(StoreMapper.toDTO(storeService.getStoreByAdmin()));
-    }
-
-    @GetMapping("/employee")
-    public ResponseEntity<StoreDTO> getStoreByEmployee(@RequestHeader("Authorization")String jwt) throws Exception {
-
-        return ResponseEntity.ok(storeService.getStoreByEmployee());
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<StoreDTO> updateStore(@PathVariable Long id, @RequestBody StoreDTO storeDTO) throws Exception {
         return ResponseEntity.ok(storeService.updateStore(id, storeDTO));
@@ -66,6 +47,24 @@ public class StoreController {
                                                  @RequestHeader("Authorization")String jwt) throws Exception {
 
         return ResponseEntity.ok(storeService.getStoreByID(id));
+    }
+
+    @GetMapping("/employee")
+    public ResponseEntity<StoreDTO> getStoreByEmployee(@RequestHeader("Authorization")String jwt) throws Exception {
+
+        return ResponseEntity.ok(storeService.getStoreByEmployee());
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<StoreDTO> getStoreByAdmin(@RequestHeader("Authorization")String jwt) throws Exception {
+
+        return ResponseEntity.ok(StoreMapper.toDTO(storeService.getStoreByAdmin()));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<StoreDTO>> getAllStores(@RequestHeader("Authorization")String jwt) throws Exception {
+
+        return ResponseEntity.ok(storeService.getAllStores());
     }
 
     @DeleteMapping("/{id}")

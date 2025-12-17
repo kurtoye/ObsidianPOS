@@ -30,13 +30,6 @@ public class ProductController {
         );
     }
 
-    @GetMapping("/store/{storeId}")
-    public ResponseEntity<List<ProductDTO>> getByStoreID(@PathVariable Long storeId,
-                                                         @RequestHeader("Authorization") String jwt) throws Exception {
-
-        return ResponseEntity.ok(productService.getProductsByStoreId(storeId));
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id,
                                                     @RequestBody ProductDTO productDTO,
@@ -52,6 +45,15 @@ public class ProductController {
                 )
         );
     }
+
+    @GetMapping("/store/{storeId}")
+    public ResponseEntity<List<ProductDTO>> getByStoreID(@PathVariable Long storeId,
+                                                         @RequestHeader("Authorization") String jwt) throws Exception {
+
+        return ResponseEntity.ok(productService.getProductsByStoreId(storeId));
+    }
+
+
 
     @GetMapping("/store/{storeId}/search")
     public ResponseEntity<List<ProductDTO>> searchByKeyword(@PathVariable Long storeId,
