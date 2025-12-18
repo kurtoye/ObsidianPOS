@@ -37,13 +37,13 @@ public class Store {
     private StoreContact contact= new StoreContact();
 
     @PrePersist
-    protected void onCreated() {
+    protected void onCreate() {
         this.createdAt = LocalDateTime.now();
         status = StoreStatus.PENDING;
     }
 
     @PreUpdate
-    protected void onUpdated() {
+    protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
 }

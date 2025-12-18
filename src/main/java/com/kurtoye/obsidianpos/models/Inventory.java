@@ -29,10 +29,8 @@ public class Inventory {
     private LocalDateTime lastUpdated;
 
     @PrePersist
+    protected void onUpdate() { this.lastUpdated = LocalDateTime.now();}
+
     @PreUpdate
-    protected void onUpdate() {
-        this.lastUpdated = LocalDateTime.now();
-    }
-
-
+    protected void onCreate() { this.lastUpdated = LocalDateTime.now();}
 }

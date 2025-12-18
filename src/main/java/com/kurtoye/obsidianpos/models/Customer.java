@@ -27,4 +27,8 @@ public class Customer {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    protected void onUpdate() { this.updatedAt = LocalDateTime.now();}
+
+    @PreUpdate
+    protected void onCreate() { this.createdAt = LocalDateTime.now();}
 }
