@@ -67,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public User updateEmployee(Long employeeId, UserDTO employee) throws Exception {
+    public UserDTO updateEmployee(Long employeeId, UserDTO employee) throws Exception {
         User existingEmployee = userRepository.findById(employeeId).orElseThrow(() -> new Exception("Employee not found"));
         Branch branch = branchRepository.findById(employee.getBranchId()).orElseThrow(() -> new Exception("Branch not found"));
 
@@ -76,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         existingEmployee.setPassword(employee.getPassword());
         existingEmployee.setRole(employee.getRole());
         existingEmployee.setBranch(branch);
-        return userRepository.save(existingEmployee);
+        return UserMapper.toDTO(existingEmployee);
     }
 
     @Override

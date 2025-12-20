@@ -34,10 +34,10 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateEmployee(@RequestBody UserDTO userDTO,
+    public ResponseEntity<UserDTO> updateEmployee(@RequestBody UserDTO userDTO,
                                                @PathVariable Long id) throws Exception {
 
-        User employee = employeeService.updateEmployee(id, userDTO);
+        UserDTO employee = employeeService.updateEmployee(id, userDTO);
         return ResponseEntity.ok(employee);
     }
 
