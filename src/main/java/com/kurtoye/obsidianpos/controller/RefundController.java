@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/refunds")
+@RequestMapping("/api/v1/refunds")
 public class RefundController {
 
     private final RefundService refundService;
